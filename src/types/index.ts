@@ -1,3 +1,5 @@
+import { ImageProps } from 'react-native';
+
 export interface TextProps {
   title: string;
   fontColor?: string;
@@ -19,4 +21,9 @@ export interface ServiceProps {
   machineNo: string;
   desc: string;
   serviceCount: string;
+}
+
+export interface DrawerListItemProps {
+  title: string;
+  image: ImageProps;
 }

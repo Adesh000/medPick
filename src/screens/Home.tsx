@@ -1,4 +1,11 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -17,9 +24,10 @@ enum TAB {
   INCIDENT = 'incident',
 }
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [tabValue, setTabValue] = useState(TAB.ASSET);
   const [listData, setListData] = useState(SERVICE_DATA);
+  const [hideHospitalBox, setHideHospitalBox] = useState(false);
   const onChangeTab = (value: TAB) => {
     if (value === tabValue) return;
     if (value === TAB.ASSET) {
@@ -38,7 +46,9 @@ const Home = () => {
         />
         <View style={[styles.iconsContainer, styles.flexBetween]}>
           <Icon name="qr-code" size={20} color={COLORS.white} />
-          <Icon name="menu" size={30} color={COLORS.white} />
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Icon name="menu" size={30} color={COLORS.white} />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -46,25 +56,32 @@ const Home = () => {
       <View style={styles.hospitalBox}>
         <AppText title="ABC Hospital" textSize={SIZE.xlg} />
         <AppText title="Branch Name" textSize={SIZE.md} />
-        <View
-          style={[
-            styles.flexBetween,
-            {
-              marginTop: 20,
-            },
-          ]}
-        >
-          <View>
-            <AppText title="All Assets are in order" fontFamily={FONTS.RB} />
-            <AppText title="00 hr : 00 m : 00 s" fontFamily={FONTS.IB} />
+        {!hideHospitalBox && (
+          <View
+            style={[
+              styles.flexBetween,
+              {
+                marginTop: 20,
+              },
+            ]}
+          >
+            <View>
+              <AppText title="All Assets are in order" fontFamily={FONTS.RB} />
+              <AppText title="00 hr : 00 m : 00 s" fontFamily={FONTS.IB} />
+            </View>
+            <Octicons name="check" size={50} color={COLORS.white} />
           </View>
-          <Octicons name="check" size={50} color={COLORS.white} />
-        </View>
+        )}
       </View>
 
       <FlatList
         data={listData}
         keyExtractor={item => item.id.toString()}
+        onScroll={e => {
+          const yOffset = e.nativeEvent.contentOffset.y;
+          setHideHospitalBox(yOffset > 10); // hide when scrolled down a bit
+        }}
+        scrollEventThrottle={16}
         ListHeaderComponent={
           <>
             <FlatList

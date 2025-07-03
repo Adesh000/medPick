@@ -1,3 +1,5 @@
+import { Assets, Dashboard, QRCode, Settings, Tools, Request } from './images';
+
 export const INCIDENTS = [
   {
     id: 1,
@@ -90,5 +92,38 @@ export const SERVICE_DATA = [
     desc: 'Intensive Care',
     machineNo: 'AG-764569812',
     serviceCount: '04',
+  },
+];
+
+export const DRAWER_ITEMS = [
+  {
+    id: 1,
+    iconName: QRCode,
+    title: 'Scan QR Code',
+  },
+  {
+    id: 2,
+    iconName: Dashboard,
+    title: 'Dashboard',
+  },
+  {
+    id: 3,
+    iconName: Assets,
+    title: 'Assets',
+  },
+  {
+    id: 4,
+    iconName: Tools,
+    title: 'Incidents',
+  },
+  {
+    id: 5,
+    iconName: Settings,
+    title: 'Services',
+  },
+  {
+    id: 6,
+    iconName: Request,
+    title: 'Requests',
   },
 ];

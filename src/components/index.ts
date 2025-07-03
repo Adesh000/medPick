@@ -5,6 +5,8 @@ import ServiceBox from './ServiceBox';
 import IncidentChart from './IncidentChart';
 import AssetsChart from './AssetsChart';
 import IncidentItem from './IncidentItem';
+import DrawerHeader from './DrawerHeader';
+import DrawerListItem from './DrawerListItem';
 
 export {
   AppButton,
@@ -14,4 +16,6 @@ export {
   AssetsChart,
   IncidentChart,
   IncidentItem,
+  DrawerHeader,
+  DrawerListItem,
 };

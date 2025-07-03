@@ -1,14 +1,16 @@
 import { NewAppScreen } from '@react-native/new-app-screen';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import { Home } from './src';
+import { DrawerNavigation, Home } from './src';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 function App() {
   return (
-    <View style={styles.container}>
-      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
-      {/* <NewAppScreen templateFileName="App.tsx" /> */}
-      <Home />
-    </View>
+    <GestureHandlerRootView style={styles.container}>
+      <NavigationContainer>
+        <DrawerNavigation />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 
